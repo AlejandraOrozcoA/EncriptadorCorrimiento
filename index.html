@@ -7,7 +7,7 @@
     <title>Practica0</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/Navbar-Right-Links-icons.css">
-<script type="text/javascript" src="./JavaScript/leerDoc.js"></script>
+    <script type="text/javascript" src="./JavaScript/leerDoc.js"></script>
 </head>
 
 <body>
@@ -31,12 +31,22 @@
                     <div class="card-body">
                         <h4 class="card-title">Canción</h4>
                         <h6 class="text-muted card-subtitle mb-2">Llena el formulario</h6>
-                        <form><select class="form-select">
+                        <form>
+                            <select class="form-select">
                                 <optgroup label="Selecciona una opción">
                                     <option value="0" selected="">Encriptar</option>
                                     <option value="1">Desencriptar</option>
                                 </optgroup>
-                            </select><br><label class="form-label form-label">Corrimiento</label><input class="form-control" type="number" value="3" disabled="disabled"><br><label class="form-label form-label">Documento</label><input class="form-control" type="file" id="file-song" accept="txt"><br><button class="btn btn-primary" type="button" onclick="leerArchivo()">Aceptar</button></form>
+                            </select>
+                            <br>
+                            <label class="form-label form-label">Corrimiento</label>
+                            <input id="corrimiento" class="form-control" type="number" value="3" disabled="disabled">
+                            <br>
+                            <label class="form-label form-label">Documento</label>
+                            <input class="form-control" type="file" id="file-song" accept="txt">
+                            <br>
+                            <button class="btn btn-primary" type="button" onclick="leerArchivo()">Aceptar</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -52,7 +62,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Cifrado</h4>
-                        <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                        <p class="card-text" id="cifrado">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
                     </div>
                 </div>
             </div>
