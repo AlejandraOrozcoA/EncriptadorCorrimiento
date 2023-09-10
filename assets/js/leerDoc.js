@@ -11,6 +11,17 @@ function getOpcion(){
     return 0;
   }
 }
+//Cambia el titulo del h4 dependiendo de la opcion seleccionada
+function cambiarTitulo(){
+  var opcion = getOpcion();
+  if (opcion == 1) {
+    document.getElementById("titulo").innerHTML = "Cifrado";
+  } else if (opcion == 2) {
+    document.getElementById("titulo").innerHTML = "Descifrado";
+  } else{
+    document.getElementById("titulo").innerHTML = "Selecciona una opción";
+  }
+}
 
 //Abre el archivo de txt y obtiene el contenido
 function leerArchivo() {
@@ -31,6 +42,7 @@ function leerArchivo() {
     }
   };
   lector.readAsText(archivo);
+  crearBoton();
 }
 
 //Cifra el texto del archivo haciendo el corrimiento
@@ -89,6 +101,15 @@ function mostrarContenidoOriginal(contenido) {
 function mostrarContenidoCifrado(contenido) {
   var elemento = document.getElementById('cifrado');
   elemento.innerHTML = contenido;
+}
+
+//Crea el boton para descargar el archivo
+function crearBoton(){
+  var boton = document.createElement("button");
+  boton.innerHTML = "Descargar";
+  boton.setAttribute("class", "btn btn-primary");
+  boton.setAttribute("onclick", "descargarArchivo()");
+  document.getElementById("div-c-d").appendChild(boton);
 }
 
 //Crear archivo de texto y descargarlo

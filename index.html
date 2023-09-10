@@ -32,7 +32,7 @@
                         <h4 class="card-title">Canción</h4>
                         <h6 class="text-muted card-subtitle mb-2">Llena el formulario</h6>
                         <form>
-                            <select id="opciones" class="form-select">
+                            <select id="opciones" class="form-select" onchange="cambiarTitulo()">
                                 <optgroup label="Selecciona una opción">
                                     <option value="1" selected="">Cifrar</option>
                                     <option value="2">Descifrar</option>
@@ -54,17 +54,17 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Original</h4>
-                        <p class="card-text" id="original">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                        <p class="card-text" id="original"></p>
+                        <br>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Cifrado</h4>
-                        <p class="card-text" id="cifrado">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                    <div id="div-c-d" class="card-body">
+                        <h4 class="card-title" id="titulo">Cifrado</h4>
+                        <p class="card-text" id="cifrado"></p>
                         <br>
-                        <button id="btn-descarga" class="btn btn-primary" type="button" onclick="descargarArchivo()">Descargar</button>
                     </div>
                 </div>
             </div>
