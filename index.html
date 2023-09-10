@@ -32,10 +32,10 @@
                         <h4 class="card-title">Canción</h4>
                         <h6 class="text-muted card-subtitle mb-2">Llena el formulario</h6>
                         <form>
-                            <select class="form-select">
+                            <select id="opciones" class="form-select">
                                 <optgroup label="Selecciona una opción">
-                                    <option value="0" selected="">Encriptar</option>
-                                    <option value="1">Desencriptar</option>
+                                    <option value="1" selected="">Cifrar</option>
+                                    <option value="2">Descifrar</option>
                                 </optgroup>
                             </select>
                             <br>
@@ -45,7 +45,7 @@
                             <label class="form-label form-label">Documento</label>
                             <input class="form-control" type="file" id="file-song" accept="txt">
                             <br>
-                            <button class="btn btn-primary" type="button" onclick="leerArchivo()">Aceptar</button>
+                            <button id="btm-carga" class="btn btn-primary" type="button" onclick="leerArchivo()">Aceptar</button>
                         </form>
                     </div>
                 </div>
@@ -63,6 +63,8 @@
                     <div class="card-body">
                         <h4 class="card-title">Cifrado</h4>
                         <p class="card-text" id="cifrado">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                        <br>
+                        <button id="btn-descarga" class="btn btn-primary" type="button" onclick="descargarArchivo()">Descargar</button>
                     </div>
                 </div>
             </div>

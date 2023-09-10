@@ -4,7 +4,6 @@ function leerArchivo() {
   let doc = document.getElementById('file-song')
   let archivo = doc.files[0];
   nombreArchivo = archivo.name;
-  console.log(nombreArchivo);
   if (!archivo) {
     return;
   }
@@ -46,4 +45,39 @@ function cifrado(contenido){
 function mostrarContenidoCifrado(contenido) {
   var elemento = document.getElementById('cifrado');
   elemento.innerHTML = contenido;
+}
+
+function descargarArchivo() {
+  var contenido = document.getElementById('cifrado')
+  //crea un archivo de texto con el contenido cifrado
+  var archivo = new Blob([contenido.innerHTML], {type: 'text/plain'});
+  //descarga el archivo
+  var a = document.createElement("a");
+  var url = URL.createObjectURL(archivo);
+  a.href = url;
+  if (getOpcion() == 1) { //Cifrado
+    var nom = nombreArchivo.split(".")[0] + "_C.txt";
+    a.download = nom;
+  } else if (getOpcion() == 2) { //Descifrado
+    var nom = nombreArchivo.split(".")[0] + "_D.txt";
+    a.download = nom;
+  }
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function() {
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);  
+  }, 0);
+}
+
+//Obtiene el valor del select "opciones"
+function getOpcion(){
+  var opcion = document.getElementById("opciones").value;
+  if (opcion == 1) {
+    return 1; //Cifrar
+  } else if (opcion == 2) {
+    return 2; //Descifrar
+  } else{
+    return 0;
+  }
 }
