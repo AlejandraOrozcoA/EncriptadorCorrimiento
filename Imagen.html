@@ -7,6 +7,7 @@
     <title>Practica0</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/Navbar-Right-Links-icons.css">
+    <script type="text/javascript" src="assets/js/leerImg.js"></script>
 </head>
 
 <body>
@@ -23,6 +24,53 @@
             </div>
         </div>
     </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Canción</h4>
+                        <h6 class="text-muted card-subtitle mb-2">Llena el formulario</h6>
+                        <form>
+                            <select id="opciones" class="form-select" onchange="cambiarTitulo()">
+                                <optgroup label="Selecciona una opción">
+                                    <option value="1" selected="">Cifrar</option>
+                                    <option value="2">Descifrar</option>
+                                </optgroup>
+                            </select>
+                            <br>
+                            <label class="form-label form-label">Corrimiento</label>
+                            <input id="corrimiento" class="form-control" type="number" value="3" disabled="disabled">
+                            <br>
+                            <label class="form-label form-label">Documento</label>
+                            <input class="form-control" type="file" id="file-img" accept=".bmp">
+                            <br>
+                            <button id="btm-carga" class="btn btn-primary" type="button" onclick="leerImagen()">Aceptar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Original</h4>
+                        <p class="card-text" id="original"></p>
+                        <img id="img-original"  class="invisible" alt="Imagen original" width="100%" height="100%">
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div id="div-c-d" class="card-body">
+                        <h4 class="card-title" id="titulo">Cifrado</h4>
+                        <p class="card-text" id="cifrado"></p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/leerDoc.js"></script>
 </body>

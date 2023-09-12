@@ -1,4 +1,4 @@
-let nombreArchivo;
+let nombreArchivo = "";
 
 //Obtiene el valor del select "opciones" para saber si se va a cifrar o descifrar
 function getOpcion(){
