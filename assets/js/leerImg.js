@@ -1,4 +1,5 @@
-let nombreImg;
+let nombreImg = "";
+let base24;
 
 //Obtiene el valor del select "opciones" para saber si se va a cifrar o descifrar
 function getOpcion(){
@@ -26,31 +27,61 @@ function cambiarTitulo(){
 
 
 function leerImagen() {
-    //obterner img-original
-    var img = document.getElementById("img-original");
-    //obtener el archivo
-    var file = document.getElementById("file-img");
-    nombreImg = file.files[0].name;
-    console.log(nombreImg);
-    //leer la imagen bmp y convertirla en base64
-    var reader = new FileReader();  
-    reader.readAsDataURL(file.files[0]);
-    reader.onload = function () {
-        img.src = reader.result;
+    // Obtiene el archivo seleccionado
+    var archivo = document.getElementById("file-img");
+    nombreImg = archivo.files[0].name;
+    mostrarImgOriginal();
+    // obtener opciones
+    var opcion = getOpcion();
+    if (opcion == 1) {
+      cifrar();
+    }
+    else if (opcion == 2) {
+      //descifrar();
+    }   
+  }
+
+//mostrar la imagen en el canvas
+function cifrar() {
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    var img = new Image();
+    img.src = nombreImg;
+    img.onload = function(){
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img,0,0);
+      var corrimiento = document.getElementById("corrimiento").value;
+      console.log(corrimiento);
+      //recorrer las coordenadas de la imagen
+      for (var x = 0; x < canvas.width; x++) {
+        for (var y = 0; y < canvas.height; y++) {
+          //obtener el color de cada pixel
+          var pixel = ctx.getImageData(x, y, 1, 1);
+          var data = pixel.data;
+          var r = data[0];
+          var g = data[1];
+          var b = data[2];
+          var a = data[3];
+          //cifrar el color de cada pixel
+          r = (r + parseInt(corrimiento)) % 256;
+          g = (g + parseInt(corrimiento)) % 256;
+          b = (b + parseInt(corrimiento)) % 256;
+          //guardar el color cifrado en el pixel
+          ctx.fillStyle = "rgba("+r+","+g+","+b+","+a+")";
+          ctx.fillRect(x, y, 1, 1);
         }
-    reader.onerror = function (error) {
-        console.log('Error: ', error);
+      }
     }
   }
 
 // Funciones para mostrar el contenido en pantalla
-function mostrarContenidoOriginal(contenido) {
-    var elemento = document.getElementById('img-original');
-    elemento.src = contenido;
-  }
-function mostrarContenidoCifrado(contenido) {
-    var elemento = document.getElementById('cifrado');
-    elemento.innerHTML = contenido;
+function mostrarImgOriginal() {
+    var imagen = document.getElementById('img-original');
+    //var url = "img/"+nombreImg;
+
+    imagen.setAttribute("src", nombreImg );
+    
   }
 
 //Crea el boton para descargar el archivo

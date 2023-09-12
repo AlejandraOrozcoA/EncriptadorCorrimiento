@@ -40,7 +40,7 @@
                             </select>
                             <br>
                             <label class="form-label form-label">Corrimiento</label>
-                            <input id="corrimiento" class="form-control" type="number" value="3" disabled="disabled">
+                            <input id="corrimiento" class="form-control" type="number" value="30" disabled="disabled">
                             <br>
                             <label class="form-label form-label">Documento</label>
                             <input class="form-control" type="file" id="file-img" accept=".bmp">
@@ -55,7 +55,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Original</h4>
                         <p class="card-text" id="original"></p>
-                        <img id="img-original"  class="invisible" alt="Imagen original" width="100%" height="100%">
+                        <img id="img-original" width="100%" height="100%" >
                         <br>
                     </div>
                 </div>
@@ -65,6 +65,7 @@
                     <div id="div-c-d" class="card-body">
                         <h4 class="card-title" id="titulo">Cifrado</h4>
                         <p class="card-text" id="cifrado"></p>
+                        <canvas id="canvas" width="100%" height="100%"></canvas>
                         <br>
                     </div>
                 </div>
