@@ -1,5 +1,4 @@
 let nombreImg = "";
-let base24;
 
 //Obtiene el valor del select "opciones" para saber si se va a cifrar o descifrar
 function getOpcion(){
@@ -43,43 +42,46 @@ function leerImagen() {
 
 //mostrar la imagen en el canvas
 function cifrar() {
-    var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
-    var img = new Image();
-    img.src = nombreImg;
-    img.onload = function(){
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx.drawImage(img,0,0);
-      var corrimiento = document.getElementById("corrimiento").value;
-      console.log(corrimiento);
-      //recorrer las coordenadas de la imagen
-      for (var x = 0; x < canvas.width; x++) {
-        for (var y = 0; y < canvas.height; y++) {
-          //obtener el color de cada pixel
-          var pixel = ctx.getImageData(x, y, 1, 1);
-          var data = pixel.data;
-          var r = data[0];
-          var g = data[1];
-          var b = data[2];
-          var a = data[3];
-          //cifrar el color de cada pixel
-          r = (r + parseInt(corrimiento)) % 256;
-          g = (g + parseInt(corrimiento)) % 256;
-          b = (b + parseInt(corrimiento)) % 256;
-          //guardar el color cifrado en el pixel
-          ctx.fillStyle = "rgba("+r+","+g+","+b+","+a+")";
-          ctx.fillRect(x, y, 1, 1);
-        }
-      }
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  var img = new Image();
+  img.src = nombreImg;
+  img.crossOrigin = "Anonymous";
+  img.onload = function(){
+    console.log("hola");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img,0,0);
+    var corrimiento = document.getElementById("corrimiento").value;
+    const imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
+    const pixeles = imageData.data;
+    console.log(pixeles.length);
+    var x = 0;
+    for(var i = 0; i < pixeles.length; i+=4){
+      r = pixeles[i];
+      g = pixeles[i+1];
+      b = pixeles[i+2];
+
+      r = Math.min((r + corrimiento) % 256 , 255, 255) ;
+      g = Math.min(255, (g + corrimiento) % 256, 255) ;
+      b = Math.min(255, 255, (b + corrimiento) % 256) ;
+
+      //pintarlo en el canvas
+      pixeles[i] = r;
+      pixeles[i+1] = g;
+      pixeles[i+2] = b;
+      pixeles[i+3] = 255;
+
+      //actualizar el canvas
+      ctx.putImageData(imageData, 0, 0);
     }
   }
+}
 
 // Funciones para mostrar el contenido en pantalla
 function mostrarImgOriginal() {
     var imagen = document.getElementById('img-original');
-    //var url = "img/"+nombreImg;
-
+    var url = "img/"+nombreImg;
     imagen.setAttribute("src", nombreImg );
     
   }
